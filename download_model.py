@@ -22,8 +22,6 @@ logging.basicConfig(level=logging.INFO,
 logger = logging.getLogger(__name__)
 
 REQUIRED_ENV_VARS = ["MLFLOW_TRACKING_URI", "MLFLOW_TRACKING_USERNAME", "MLFLOW_TRACKING_PASSWORD"]
-
-MODEL_VERSION_FILE = ".model-version"
 MODEL_NAME = "outlier-detection"
 OUTPUT_FILE = "outlier_detection_model.pkl"
 
@@ -37,8 +35,7 @@ def check_env_vars() -> None:
 
 def main() -> None:
     check_env_vars()
-    version = open(MODEL_VERSION_FILE).read().strip()
-    model_uri = f"models:/{MODEL_NAME}/{version}"
+    model_uri = f"models:/{MODEL_NAME}@champion"
     logger.info(f"Downloading model from: {model_uri}")
 
     model = mlflow.sklearn.load_model(model_uri)

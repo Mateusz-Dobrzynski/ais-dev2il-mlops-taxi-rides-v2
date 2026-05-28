@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - ".github/**"
       - "data/**"
       - "uv.lock"
       - "outlier_detector_training.py"
